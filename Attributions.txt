@@ -1,0 +1,99 @@
+
+
+
+
+
+
+
+<color=#BC799E><align=center><b><size=128>THANK YOU</size></b></align>
+</color>
+
+
+
+
+
+
+<color=#1C89AE><size=64><b>3D Models</size></color></b>
+
+Tree pack
+
+	Resource: Unity Asset Store
+	Package Name: LowPolyTreePack
+	Author: Broken Vector https://www.brokenvector.com
+
+<color=#79BCB0><size=64><b>Visual Effects</size></color></b>
+
+Rain VFX
+
+	Resource: Unity Asset Store
+	Unity Package Name: FullOpaqueRain
+	Author: Roman CHACORNAC
+
+Smog VFX
+
+	Resource: Unity Asset Store
+	Package Name: Blacksmith (Stylized)
+	Author: Bitcraft
+
+<color=#97BC79><size=64><b>Sound Design</size></color></b>
+
+Rain ambience sound
+
+	Rain, sheet roof.wav by snarcle
+	https://freesound.org/s/569370/
+	License: Attribution 4.0
+
+Menu/Gameover ambience
+
+	Resource: Unity Asset Store
+	Package Name: Cinematic Trailer Music - Collection
+		Cinematic Trailer Music - Variations - 07 - Cinematic Fairy Tale Trailer - Celesta only version
+	Auhor: Gregor Quendel 
+
+Gameplay loops
+
+	Thunder
+		Resource: Unity Asset Store
+		Package Name: FREE - Piano Scenes - "5_Dawn_V1-converted"
+		Author: Jebrazil https://joshuabrazil.com.
+	Storm
+		Resource: Unity Asset Store
+		Package Name: Piano Solo - "Missing Someone"
+		Author: T.C. Edwards https://tcedwardscomposer.com/contact/
+	Orange Warning
+		Resource: Unity Asset Store
+		Package Name: Free 8 Piano Ambient Tracks Vol. 2 - "Piano 5"
+		Author: alkakrab alkakrab04@gmail.com
+	Red Warning
+		Resource: Unity Asset Store
+		Package Name: Piano Solo - "Graveyard Blues"
+		Author: T.C. Edwards https://tcedwardscomposer.com/contact/
+
+<color=#88CBE7><size=64><b>Sound Effects</size></color></b>
+
+Umbrella pop SFX
+
+	umbrella.wav by tim.kahn
+	https://freesound.org/s/84546/
+	License: Attribution 4.0
+
+Thunder SFX
+
+	NYC Rain 4 D- thunder rumble.wav by bmlake
+	https://freesound.org/s/251629/
+	License: Attribution 4.0
+
+Wind SFX
+
+	Resource: Unity Asset Store
+	Package Name: Cinematic Trailer Music - Collection
+	Cinematic Trailer Music - 23 - Cinematic Experimental Piano & Woodwinds Trailer
+	Author: Gregor Quendel 
+
+<color=#129167><size=64><b>Fonts</size></color></b>
+
+Fonts - Google fonts Ole-Regular
+
+<color=#924167><size=64><b>Other</size></color></b>
+
+evengy
