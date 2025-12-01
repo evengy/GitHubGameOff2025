@@ -13,7 +13,6 @@ namespace Assets.Scripts
         ParticleSystem.ShapeModule shape;
         ParticleSystem.EmissionModule emission;
 
-        private bool isDefaultState;
 
         public Guid CloudID { get; private set; }
 
@@ -21,7 +20,6 @@ namespace Assets.Scripts
         {
             CloudID = Guid.NewGuid();
 
-            isDefaultState = true;
             shape = rain.GetComponent<ParticleSystem>().shape;
             emission = rain.GetComponent<ParticleSystem>().emission;
 
@@ -55,9 +53,8 @@ namespace Assets.Scripts
                      IncrementalUpgradesManager.Instance.CloudCurrentSize * 2);
                 
                 emission.rateOverTimeMultiplier = 100;
-                isDefaultState = false;
             }
-            else if (!isDefaultState)
+            else
             {
                 shape.scale = new Vector3(1f, 1f, 10f) * IncrementalUpgradesManager.Instance.CloudCurrentSize;
                 gameObject.transform.localScale = new Vector3(
@@ -66,7 +63,6 @@ namespace Assets.Scripts
                      IncrementalUpgradesManager.Instance.CloudCurrentSize);
                 
                 emission.rateOverTimeMultiplier = 25;
-                isDefaultState = true;
             }
         }
     }
