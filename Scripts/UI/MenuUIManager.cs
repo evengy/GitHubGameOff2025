@@ -79,6 +79,8 @@ public class MenuUIManager : Singleton<MenuUIManager>, IUI
 
         creditsContent.GetComponent<CreditsScroll>().ResetPosition();
         creditsContent.SetActive(true);
+        backToMenuButton?.gameObject.SetActive(true);
+
     }
 
     internal void ShowAbout()
@@ -86,6 +88,6 @@ public class MenuUIManager : Singleton<MenuUIManager>, IUI
         UpdateUI(false);
 
         backToMenuButton?.gameObject.SetActive(true);
-        creditsContent.SetActive(true);
+        aboutContent.SetActive(true);
     }
 }

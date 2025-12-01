@@ -12,6 +12,8 @@ public class UpgradesUIManager : Singleton<UpgradesUIManager>, IUI, IResetable
 
     private DepthOfField dof;
 
+    public bool IsOpened { get; private set; }
+
     void Start()
     {
         globalVolume.profile.TryGet(out dof);
@@ -30,6 +32,7 @@ public class UpgradesUIManager : Singleton<UpgradesUIManager>, IUI, IResetable
         dof.active = flag;
         dof.gaussianStart.value = flag ? 0 : 30;
         Time.timeScale = flag ? timeScaleWhenOpened : 1;
+        IsOpened = flag;
     }
 
     public void ResetBackToDefault()

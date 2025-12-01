@@ -29,7 +29,17 @@ public class UIManager : Singleton<UIManager>
                 break;
             case GameState.InGameOver:
                 AmbientManager.Instance.ResetBackToDefault();
-                AmbientManager.Instance.PlayIntroThenLoop(gameOverASMR,menuAmbience);
+
+                // play gameover ASMR only if player got through at least one wave
+                if (HUD.Instance.WaveCounter > 1)
+                {
+                    AmbientManager.Instance.PlayIntroThenLoop(gameOverASMR, menuAmbience);
+                }
+                else
+                {
+                    AmbientManager.Instance.CrossfadeTo(menuAmbience);
+                }
+
                 IncrementalUpgradesManager.Instance.Reset();  // Important to do this before upgrades reset because upgrades fetches cost
                 UpgradesUIManager.Instance.ResetBackToDefault();
                 AbilitiesUI.Instance.ResetBackToDefault();

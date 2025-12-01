@@ -32,7 +32,7 @@ namespace Assets.Scripts
         private void HandleSelect()
         {
             //if (!mouse.leftButton.wasPressedThisFrame)
-            if (!Input.GetMouseButtonDown(0))
+            if (!Input.GetMouseButtonDown(0) || UpgradesUIManager.Instance.IsOpened)
                 return;
 
             Ray ray = mainCamera.ScreenPointToRay(mouse.position.ReadValue());

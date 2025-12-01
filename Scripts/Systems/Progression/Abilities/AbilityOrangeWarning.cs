@@ -1,8 +1,4 @@
-
-using Assets.Scripts;
-using System;
 using Unity.Cinemachine;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

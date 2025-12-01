@@ -50,7 +50,7 @@ public class PointAndClickCloudController : MonoBehaviour
     private void HandleMarkerPositioning()
     {
         //if (Mouse.current.leftButton.wasPressedThisFrame && GameStateManager.Instance.GameState.Equals(GameState.InWave))
-        if (Input.GetMouseButtonDown(0) && WaveStateManager.Instance.WaveState.Equals(WaveState.InWave))
+        if (Input.GetMouseButtonDown(0) && WaveStateManager.Instance.WaveState.Equals(WaveState.InWave) && !UpgradesUIManager.Instance.IsOpened)
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject() || DragAndDropCloudController.Instance.IsCloudSelected)
             {

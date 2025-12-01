@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO fix props
 public class UpgradesNavigationUI : MonoBehaviour, IResetable
 {
     [SerializeField] private Button navigationUpgradesCloseButton;
@@ -18,7 +19,7 @@ public class UpgradesNavigationUI : MonoBehaviour, IResetable
         navigationUpgradesCloseButton.gameObject.SetActive(false);
         navigationUpgradesOpenButton.gameObject.SetActive(true);
         UpgradesUIManager.Instance.UpdateUI(false);
-        navigationStateLabel.text = upgradesOpenLabelText;
+        navigationStateLabel.text = "Forecast";
         navigationUpgradesCloseButton.transform.localScale = Vector3.one;
         navigationUpgradesOpenButton.transform.localScale = Vector3.one;
     }
@@ -28,8 +29,8 @@ public class UpgradesNavigationUI : MonoBehaviour, IResetable
         navigationUpgradesOpenButton.gameObject.SetActive(false);
         navigationUpgradesCloseButton.gameObject.SetActive(true);
         UpgradesUIManager.Instance.UpdateUI(true);
-        navigationStateLabel.text = upgradesCloseLabelText;
-        navigationStateLabel.color = upgradesLabelOpenColor; // new Color(0.8396226f, 0.2732734f, 0.4464157f, 1);
+        navigationStateLabel.text = "Close";
+        navigationStateLabel.color  = new Color(0.8396226f, 0.2732734f, 0.4464157f, 1); // upgradesLabelOpenColor; // new Color(0.8396226f, 0.2732734f, 0.4464157f, 1);
     }
 
     public void ExecuteClose()
@@ -37,7 +38,7 @@ public class UpgradesNavigationUI : MonoBehaviour, IResetable
         navigationUpgradesOpenButton.gameObject.SetActive(true);
         navigationUpgradesCloseButton.gameObject.SetActive(false);
         UpgradesUIManager.Instance.UpdateUI(false);
-        navigationStateLabel.text = upgradesOpenLabelText;
-        navigationStateLabel.color = upgradesLabelCloseColor; // new Color(0.7028302f, 0.9053788f, 1, 1);
+        navigationStateLabel.text = "Forecast";
+        navigationStateLabel.color = new Color(0.7028302f, 0.9053788f, 1, 1); // upgradesLabelCloseColor; // new Color(0.7028302f, 0.9053788f, 1, 1);
     }
 }

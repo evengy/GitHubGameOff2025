@@ -34,7 +34,7 @@ public class HUD : Singleton<HUD>, IUI, IResetable
             case WaveState.InWave:
                 umbrellasOpenedLabel.enabled = true;
                 waveCounterValueLabel.enabled = false;
-                upgradesNavigationUI.SetActive(true);
+                upgradesNavigationUI.SetActive(true); // upgrades available from first wave forward
                 scoreContainer.SetActive(true);
                 break;
             case WaveState.InStartNewWave:
@@ -43,7 +43,7 @@ public class HUD : Singleton<HUD>, IUI, IResetable
                 WavesOrchestrator.Instance.RunWave(WaveCounter);
                 umbrellasOpenedLabel.enabled = false;
                 scoreContainer.SetActive(false);
-                upgradesNavigationUI.SetActive(false);
+                //upgradesNavigationUI.SetActive(false);
                 break;
             default:
                 break;
@@ -54,16 +54,18 @@ public class HUD : Singleton<HUD>, IUI, IResetable
     {
         waveContainer.GetComponent<WaveCounterUI>().UpdateWaveCounter(); // update wave counter and callbaks to "InWave"
         
-        openedUmbrellasInWaveCounter = 0; // reset umbrellas counter for the next wave
         WaveCounter++;
+        openedUmbrellasInWaveCounter = 0; // reset umbrellas counter for the next wave
         waveCounterValueLabel.text = $"Wave {WaveCounter}";
+        umbrellasOpenedLabel.text = $"Wave {WaveCounter} \n{openedUmbrellasInWaveCounter} / {WaveManager.Instance.MinionsInWave}";
     }
 
     public void UpdateScore()
     {
         Score++;
+        openedUmbrellasInWaveCounter++;
         scoreValueLabel.text = $"{Score}";
-        umbrellasOpenedLabel.text = $"Wave {WaveCounter} \n{++openedUmbrellasInWaveCounter} / {WaveManager.Instance.MinionsInWave}";
+        umbrellasOpenedLabel.text = $"Wave {WaveCounter} \n{openedUmbrellasInWaveCounter} / {WaveManager.Instance.MinionsInWave}";
 
         // TODO place animator on score - its not the HUD responsibility
         GetComponent<Animator>().ResetTrigger("Pop");
@@ -92,7 +94,7 @@ public class HUD : Singleton<HUD>, IUI, IResetable
         openedUmbrellasInWaveCounter = 0;
         scoreValueLabel.text = $"{Score}";
         waveCounterValueLabel.text = $"Wave {WaveCounter}";
-        umbrellasOpenedLabel.text = $"Wave {WaveCounter} \n{++openedUmbrellasInWaveCounter} / {WaveManager.Instance.MinionsInWave}";
+        umbrellasOpenedLabel.text = $"Wave {WaveCounter} \n{openedUmbrellasInWaveCounter} / {WaveManager.Instance.MinionsInWave}";
 
         umbrellasOpenedLabel.enabled = false;
         waveCounterValueLabel.enabled = false;

@@ -1,4 +1,4 @@
-using UnityEditor;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -15,11 +15,11 @@ namespace Assets.Scripts
 
         private bool isDefaultState;
 
-        public GUID CloudID { get; private set; }
+        public Guid CloudID { get; private set; }
 
         private void Start()
         {
-            CloudID = GUID.Generate();
+            CloudID = Guid.NewGuid();
 
             isDefaultState = true;
             shape = rain.GetComponent<ParticleSystem>().shape;
