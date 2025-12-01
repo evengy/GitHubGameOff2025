@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 
+// TODO refactor
 public class HUD : Singleton<HUD>, IUI, IResetable
 {
     [SerializeField] private TMP_Text scoreValueLabel; // umbrellas opened total counter
@@ -23,6 +24,11 @@ public class HUD : Singleton<HUD>, IUI, IResetable
 
     private void Instance_StateUpdated()
     {
+        // TODO reverse this part to be controlled from WaveManager
+        // WaveManager should set the state InWave / InStartNewWave
+        // WaveManager should call for WaveOrchestrator to run current wave
+        // WaveManager should have information of current wave
+        // WaveManager should call HUD to update wave info
         switch (WaveStateManager.Instance.WaveState)
         {
             case WaveState.InWave:
@@ -34,6 +40,7 @@ public class HUD : Singleton<HUD>, IUI, IResetable
             case WaveState.InStartNewWave:
                 waveCounterValueLabel.enabled = true;
                 UpdateWaveCounter();
+                WavesOrchestrator.Instance.RunWave(WaveCounter);
                 umbrellasOpenedLabel.enabled = false;
                 scoreContainer.SetActive(false);
                 upgradesNavigationUI.SetActive(false);
@@ -79,9 +86,17 @@ public class HUD : Singleton<HUD>, IUI, IResetable
     public void ResetBackToDefault()
     {
         upgradesNavigationUI.GetComponent<IResetable>().ResetBackToDefault();
+
         Score = 0;
         WaveCounter = 0;
+        openedUmbrellasInWaveCounter = 0;
         scoreValueLabel.text = $"{Score}";
         waveCounterValueLabel.text = $"Wave {WaveCounter}";
+        umbrellasOpenedLabel.text = $"Wave {WaveCounter} \n{++openedUmbrellasInWaveCounter} / {WaveManager.Instance.MinionsInWave}";
+
+        umbrellasOpenedLabel.enabled = false;
+        waveCounterValueLabel.enabled = false;
+        scoreContainer.SetActive(false);
+        upgradesNavigationUI.SetActive(false);
     }
 }

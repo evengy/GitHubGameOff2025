@@ -46,7 +46,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (AbilityOrangeWarning.Instance.IsActive)
+            if (AbilitiesUI.Instance.IsActive<AbilityOrangeWarning>() && AbilityOrangeWarning.Instance.IsActive)
             {
                 shape.scale = new Vector3(1f, 1f, 10f) * IncrementalUpgradesManager.Instance.CloudCurrentSize * 2;
                 gameObject.transform.localScale = new Vector3(

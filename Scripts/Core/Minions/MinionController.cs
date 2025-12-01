@@ -90,7 +90,7 @@ public class MinionController : MonoBehaviour
 
     private float GetSpeedMultiplier()
     {
-        if (AbilityYellowWarning.Instance.IsActive)
+        if (AbilitiesUI.Instance.IsActive<AbilityYellowWarning>() && AbilityYellowWarning.Instance.IsActive)
         {
             return AbilityYellowWarning.Instance.SpeedMultiplier();
         }

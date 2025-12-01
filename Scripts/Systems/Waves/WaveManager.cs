@@ -26,6 +26,7 @@ public class WaveManager : Singleton<WaveManager>, IResetable
 
     public void RegisterSpawnedMinion(MinionController minion)
     {
+        minionsSpawnedCounter++;
         minion.transform.SetParent(spawnedMinions);
         minion.OnFailure += (x) => Failed(minion);
         minion.OnSuccess += (x) => Succeed(minion);
@@ -39,15 +40,15 @@ public class WaveManager : Singleton<WaveManager>, IResetable
 
     private void Succeed(MinionController minion)
     {
-        Destroy(minion.gameObject);
-
         if (minionsSpawnedCounter >= minionsInWave
-            && !spawnedMinions.GetComponentsInChildren<MinionController>().Any())
+            && spawnedMinions.GetComponentsInChildren<MinionController>().Count() <= 1)
         {
             minionsSpawnedCounter = 0; // reset minions counter for the current
             minionsInWave++; // increase amount of minions in the next wave
             WaveStateManager.Instance.UpdateWaveState(WaveState.InStartNewWave);
         }
+        
+        Destroy(minion.gameObject);
     }
 
     private void Failed(MinionController minion)

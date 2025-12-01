@@ -15,111 +15,101 @@ public class WavesOrchestrator : Singleton<WavesOrchestrator>, IResetable
 
     float tutorialTimer = 0;
 
-    private void Start()
-    {
-        WaveStateManager.Instance.StateUpdated += Instance_StateUpdated;
-    }
-
     public void ResetBackToDefault()
     {
         StopAllCoroutines();
     }
 
-    private void Instance_StateUpdated()
+    public void RunWave(int wave)
     {
-        if (WaveStateManager.Instance.WaveState.Equals(WaveState.InStartNewWave))
+        foreach (Link link in links)
         {
-            foreach (Link link in links)
+            link.Reset();
+        }
+
+        int incrementalComplexity = 0;
+
+        switch (wave)
+        {
+            #region presets
+            case 1:
+                tutorialTimer = -2;
+                links[1].Ignite();
+                StartCoroutine(ShowPathCoroutine(links[1].Start));
+                break;
+            case 2:
+                links[0].Ignite();
+                links[1].Ignite();
+                break;
+            case 3:
+                links[0].Ignite();
+                links[2].Ignite();
+                break;
+            case 4:
+                links[3].Ignite();
+                links[6].Ignite();
+                break;
+            case 5:
+                links[1].Ignite();
+                links[6].IgniteStart();
+                links[5].Ignite();
+                break;
+            case 6:
+                links[1].Ignite();
+                links[0].IgniteStart();
+                links[5].Ignite();
+                break;
+            case 7:
+                links[2].Ignite();
+                links[3].Ignite();
+                break;
+            case 8:
+                links[0].Ignite();
+                links[6].Ignite();
+                break;
+            case 9:
+                links[4].IgniteStart();
+                links[0].Ignite();
+                links[2].Ignite();
+                break;
+            #endregion
+            #region late game
+            case <= 16:
+                incrementalComplexity = 3;
+                break;
+            case <= 24:
+                incrementalComplexity = 4;
+                break;
+            case <= 32:
+                incrementalComplexity = 5;
+                break;
+            case > 32:
+                incrementalComplexity = 6;
+                break;
+                #endregion
+        }
+
+        // turn off one of the terminal points to reduce visual overload of the scene
+        if (incrementalComplexity > 0)
+        {
+            List<int> all = new List<int>() { 1, 2, 3, 4, 5, 6, 0 };
+
+            for (int i = 0; i < all.Count; i++)
             {
-                link.Reset();
+                int j = Random.Range(i, all.Count);
+                (all[i], all[j]) = (all[j], all[i]);
             }
 
+            List<int> picked = all.GetRange(0, incrementalComplexity);
 
-            int wave = HUD.Instance.WaveCounter;
-            int incrementalComplexity = 0;
-
-            switch (wave)
+            foreach (var index in picked)
             {
-                #region presets
-                case 1:
-                    tutorialTimer = -2;
-                    links[1].Ignite();
-                    StartCoroutine(ShowPathCoroutine(links[1].Start));
-                    break;
-                case 2:
-                    links[0].Ignite();
-                    links[1].Ignite();
-                    break;
-                case 3:
-                    links[0].Ignite();
-                    links[2].Ignite();
-                    break;
-                case 4:
-                    links[3].Ignite();
-                    links[6].Ignite();
-                    break;
-                case 5:
-                    links[1].Ignite();
-                    links[6].IgniteStart();
-                    links[5].Ignite();
-                    break;
-                case 6:
-                    links[1].Ignite();
-                    links[0].IgniteStart();
-                    links[5].Ignite();
-                    break;
-                case 7:
-                    links[2].Ignite();
-                    links[3].Ignite();
-                    break;
-                case 8:
-                    links[0].Ignite();
-                    links[6].Ignite();
-                    break;
-                case 9:
-                    links[4].IgniteStart();
-                    links[0].Ignite();
-                    links[2].Ignite();
-                    break;
-                #endregion
-                #region late game
-                case <= 16:
-                    incrementalComplexity = 3;
-                    break;
-                case <= 24:
-                    incrementalComplexity = 4;
-                    break;
-                case <= 32:
-                    incrementalComplexity = 5;
-                    break;
-                case > 32:
-                    incrementalComplexity = 6;
-                    break;
-                #endregion
+                links[index].Ignite();
             }
-
-            // turn off one of the terminal points to reduce visual overload of the scene
-            if (incrementalComplexity > 0)
+            if (terminals.Count(x => x.IsIgnited) > 2)
             {
-                List<int> all = new List<int>() { 1, 2, 3, 4, 5, 6, 0 };
-
-                for (int i = 0; i < all.Count; i++)
-                {
-                    int j = Random.Range(i, all.Count);
-                    (all[i], all[j]) = (all[j], all[i]);
-                }
-
-                List<int> picked = all.GetRange(0, incrementalComplexity);
-
-                foreach (var index in picked)
-                {
-                    links[index].Ignite();
-                }
-                if (terminals.Count(x => x.IsIgnited) > 2) 
-                {
-                    links[picked[0]].Reset();
-                    links[picked[0]].IgniteStart();
-                }
+                links[picked[0]].Reset();
+                links[picked[0]].IgniteStart();
             }
         }
     }

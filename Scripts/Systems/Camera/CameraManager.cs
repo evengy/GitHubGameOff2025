@@ -27,11 +27,11 @@ public class CameraManager : Singleton<CameraManager>
     {
         if (cameras.Keys.Contains(GameStateManager.Instance.GameState))
         {
-            cameras[GameStateManager.Instance.GameState].Priority = 1;
             foreach (var key in cameras.Keys.Where(k => !k.Equals(GameStateManager.Instance.GameState)))
             {
                 cameras[key].Priority = 0;
             }
+            cameras[GameStateManager.Instance.GameState].Priority = 1;
         }
     }
 
